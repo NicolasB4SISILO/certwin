@@ -31,13 +31,13 @@ public final class CliValidador {
         switch(modo) {
             case CRIAR -> {
                 obrigatorio(opcoes.getEmail(), "--email e obrigatorio no modo -C.");
-                obrigatorio(opcoes.getDominio(), "--dominio e obrigatorio no modo - C.");
+                obrigatorio(opcoes.getDominio(), "--dominio e obrigatorio no modo -C.");
             }
             case CONVERTER -> obrigatorio(opcoes.getSenha(), "--senha e obrigatorio no modo -P.");
             case CRIAR_E_CONVERTER -> {
-               obrigatorio(opcoes.getEmail(), "--email e obrigatorio no modo -C.");
-               obrigatorio(opcoes.getDominio(), "--dominio e obrigatorio no modo - C.");
-               obrigatorio(opcoes.getSenha(), "--senha e obrigatorio no modo -P.");
+               obrigatorio(opcoes.getEmail(), "--email e obrigatorio no modo -CP.");
+               obrigatorio(opcoes.getDominio(), "--dominio e obrigatorio no modo -CP.");
+               obrigatorio(opcoes.getSenha(), "--senha e obrigatorio no modo -CP.");
             }
         }
     }

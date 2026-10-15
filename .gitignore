@@ -3,3 +3,4 @@ certs/
 dependency-reduced-pom.xml
 .vscode/
 .idea/
+installer-resources/
