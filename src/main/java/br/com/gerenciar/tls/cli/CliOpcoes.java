@@ -37,6 +37,9 @@ public class CliOpcoes {
     @Option(names = "--staging", description = "Usa o ambiente de staging do Let's Encrypt em vez de producao.")
     boolean staging;
 
+    @Option(names = "--alias", description = "Alias da entrada no .p12 gerado. Default: Alias cerificado.pem")
+    String alias;
+
     public boolean isCriar() {
         return criar;
     }
@@ -71,5 +74,9 @@ public class CliOpcoes {
 
     public String getSaida() {
         return saida;
+    }
+
+    public String getAlias() {
+        return alias;
     }
 }

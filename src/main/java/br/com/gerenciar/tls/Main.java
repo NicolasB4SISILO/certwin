@@ -82,7 +82,7 @@ public final class Main {
                 Path saida = options.getSaida() != null ? 
                         Paths.get(options.getSaida()) : LocalizarJar.jarDiretorio().resolve(NOME_P12_PADRAO);
 
-                new ConverterParaP12().executeFromFiles(entrada, options.getSenha(), saida);
+                new ConverterParaP12().executeFromFiles(entrada, options.getSenha(), saida, options.getAlias());
             }
 
             case CRIAR_E_CONVERTER -> {
@@ -93,12 +93,16 @@ public final class Main {
                         ? Paths.get(options.getSaida())
                         : formatoDaSaida.p12DirParaCriarEConverter(options.getDominio()).resolve(NOME_P12_PADRAO);
 
+                String alias = (options.getAlias() != null && !options.getAlias().isBlank())
+                        ? options.getAlias()
+                        : options.getDominio();
+
                 new ConverterParaP12().execute(
                     issued.domainKeyPair().getPrivate(),
                     issued.chain(),
                     options.getSenha(),
                     saida,
-                    options.getDominio()
+                    alias
                 );
             }
         }

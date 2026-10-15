@@ -29,7 +29,8 @@ public final class ConverterParaP12 {
     public void executeFromFiles(
         Path entrada,
         String senha,
-        Path saida
+        Path saida,
+        String alias
     ) throws ArquivoException {
         if(!Files.isDirectory(entrada)) {
             throw new ArquivoException("Pasta de entrada nao encontrada: " + entrada
@@ -39,6 +40,9 @@ public final class ConverterParaP12 {
 
         PrivateKey privateKey = PemReader.readPrivateKey(entrada.resolve("privkey.pem"));
         List<X509Certificate> chain = PemReader.readCertificateChain(entrada.resolve("fullchain.pem"));
-        execute(privateKey, chain, senha, saida, ALIAS_PADRAO);
+
+        String aliasResolvido = (alias == null || alias.isBlank()) ? ALIAS_PADRAO : alias;
+
+        execute(privateKey, chain, senha, saida, aliasResolvido);
     };
 }

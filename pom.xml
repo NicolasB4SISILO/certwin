@@ -64,7 +64,7 @@
     </dependencies>
 
     <build>
-        <finalName>cert-app</finalName>
+        <finalName>certapp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
