@@ -77,10 +77,13 @@ public final class Main {
                     .execute(options.getEmail(), options.getDominio());
 
             case CONVERTER -> {
-                Path entrada = options.getEntrada() != null ? 
-                        Paths.get(options.getEntrada()) : formatoDaSaida.entradaPradao();
-                Path saida = options.getSaida() != null ? 
-                        Paths.get(options.getSaida()) : LocalizarJar.jarDiretorio().resolve(NOME_P12_PADRAO);
+                Path entrada = options.getEntrada() != null 
+                        ? Paths.get(options.getEntrada()) 
+                        : formatoDaSaida.entradaPradao();
+
+                Path saida = options.getSaida() != null 
+                        ? Paths.get(options.getSaida()) 
+                        : LocalizarJar.jarDiretorio().resolve(NOME_P12_PADRAO);
 
                 new ConverterParaP12().executeFromFiles(entrada, options.getSenha(), saida, options.getAlias());
             }
