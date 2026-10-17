@@ -4,6 +4,6 @@ dependency-reduced-pom.xml
 .vscode/
 .idea/
 installer-resources/
-# *.sh
-# build/build-completo.sh
+*.sh
+build/build-completo.sh
 builded
