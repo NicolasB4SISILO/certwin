@@ -4,5 +4,5 @@ dependency-reduced-pom.xml
 .vscode/
 .idea/
 installer-resources/
-*.sh
-builded
+build/
+builded/
