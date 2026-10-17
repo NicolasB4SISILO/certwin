@@ -21,8 +21,8 @@ import picocli.CommandLine;
 
 public final class Main {
     private static final Logger LOG = Logger.getLogger(Main.class.getName());
-    private static final Path CERTS_ROOT = Paths.get("certs");
     private static final String NOME_P12_PADRAO = "private.p12";
+    private static final String NOME_PASTA_PADRAO = "certs";
 
     public static void main(String[] args) {
         System.exit(run(args));
@@ -49,7 +49,8 @@ public final class Main {
             return ExitCodes.SUCESSO;
         }
 
-        FormatoDaSaida formatoDaSaida = new FormatoDaSaida(CERTS_ROOT);
+        Path caminhoRaizCerts = LocalizarJar.jarDiretorio().resolve(NOME_PASTA_PADRAO);
+        FormatoDaSaida formatoDaSaida = new FormatoDaSaida(caminhoRaizCerts);
         
         try {
             LogConfig.configure(formatoDaSaida.logsDir());   
@@ -89,6 +90,7 @@ public final class Main {
             }
 
             case CRIAR_E_CONVERTER -> {
+
                 IssuedCertificate issued = new FluxoDeCriacao(formatoDaSaida, options.isStaging())
                         .execute(options.getEmail(), options.getDominio());
 
