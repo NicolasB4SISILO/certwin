@@ -89,19 +89,12 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>br.com.gerenciar.tls.Main</mainClass>
+                                    <mainClass>br.com.certwin.Main</mainClass>
                                 </transformer>
-                                <!-- O Bouncy Castle se registra como security provider via
-                                     META-INF/services; sem isso, um jar sobrescreveria o
-                                     registro do outro em vez de mesclar. -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
                             <filters>
                                 <filter>
-                                    <!-- O jar do Bouncy Castle e assinado; ao mesclar varios jars num
-                                         so, as assinaturas originais (por jar) deixam de bater com o
-                                         conteudo combinado. Sem excluir esses arquivos, a JVM recusa
-                                         rodar o jar final com SecurityException (assinatura invalida). -->
                                     <artifact>*:*</artifact>
                                     <excludes>
                                         <exclude>META-INF/*.SF</exclude>
