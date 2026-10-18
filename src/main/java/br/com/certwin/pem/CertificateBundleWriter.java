@@ -16,7 +16,7 @@ public final class CertificateBundleWriter {
         PrivateKey privateKey, 
         List<X509Certificate> chain
     ) throws ArquivoException {
-        PemWriter.write(pemDir.resolve("privKey.pem"), PemWriter.encode("PRIVATE KEY", privateKey.getEncoded()));
+        PemWriter.write(pemDir.resolve("privkey.pem"), PemWriter.encode("PRIVATE KEY", privateKey.getEncoded()));
         PemWriter.write(pemDir.resolve("cert.pem"), encodeCertificate(chain.get(0)));
 
         StringBuilder chainPem = new StringBuilder();

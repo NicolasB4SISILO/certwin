@@ -38,7 +38,7 @@ public final class ConverterParaP12 {
                     + "(se o .pem foi gerado por -C/-CP, ele esta em certs/<dominio>/pem/).");
         }
 
-        PrivateKey privateKey = PemReader.readPrivateKey(entrada.resolve("privkey.pem"));
+        PrivateKey privateKey = PemReader.readPrivateKey(entrada.resolve("privKey.pem"));
         List<X509Certificate> chain = PemReader.readCertificateChain(entrada.resolve("fullchain.pem"));
 
         String aliasResolvido = (alias == null || alias.isBlank()) ? ALIAS_PADRAO : alias;

@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LogConfig {
-    public static final String LOGGER_RAIZ = "br.com.gerenciar.tls";
+    public static final String LOGGER_RAIZ = "br.com.certwin";
     private static final int TAMANHO_MAXIMO_ARQUIVO_BYTES = 5_000_000;
     private static final int QUANTIDADE_ARQUIVOS_ROTACAO = 10;
 
@@ -33,7 +33,7 @@ public class LogConfig {
         consoleHandler.setFormatter(new ConsoleFormatter());
         raiz.addHandler(consoleHandler);
 
-        String padraoArquivo = logsDir.resolve("gerenciar-tls-%g.log").toString();
+        String padraoArquivo = logsDir.resolve("certwin-%g.log").toString();
         FileHandler fileHandler = new FileHandler(
             padraoArquivo, TAMANHO_MAXIMO_ARQUIVO_BYTES, QUANTIDADE_ARQUIVOS_ROTACAO, true
         );

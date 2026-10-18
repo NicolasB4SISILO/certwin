@@ -63,7 +63,7 @@ public final class PemReader {
         List<X509Certificate> certificados = new ArrayList<>();
 
         try {
-            CertificateFactory factory = CertificateFactory.getInstance("RSA");
+            CertificateFactory factory = CertificateFactory.getInstance("X.509");
             while(matcher.find()) {
                 if(!"CERTIFICATE".equals(matcher.group(1).trim())) continue;
 
