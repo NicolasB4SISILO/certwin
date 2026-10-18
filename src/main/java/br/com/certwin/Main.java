@@ -21,8 +21,10 @@ import picocli.CommandLine;
 
 public final class Main {
     private static final Logger LOG = Logger.getLogger(Main.class.getName());
-    private static final String NOME_P12_PADRAO = "private.p12";
+    private static final String NOME_PASTA_CONVERSAO = "converts";
     private static final String NOME_PASTA_PADRAO = "certs";
+    private static final String ALIAS_PADRAO = "certificado";
+    private static final String FORMATO_P12 = ".p12";
 
     public static void main(String[] args) {
         System.exit(run(args));
@@ -82,25 +84,26 @@ public final class Main {
                         ? Paths.get(options.getEntrada()) 
                         : formatoDaSaida.entradaPradao();
 
+                String alias = options.getAlias() + FORMATO_P12;
+
                 Path saida = options.getSaida() != null 
                         ? Paths.get(options.getSaida()) 
-                        : LocalizarJar.jarDiretorio().resolve(NOME_P12_PADRAO);
+                        : LocalizarJar.jarDiretorio().resolve(NOME_PASTA_CONVERSAO).resolve(alias);
 
                 new ConverterParaP12().executeFromFiles(entrada, options.getSenha(), saida, options.getAlias());
             }
 
             case CRIAR_E_CONVERTER -> {
-
                 IssuedCertificate issued = new FluxoDeCriacao(formatoDaSaida, options.isStaging())
                         .execute(options.getEmail(), options.getDominio());
 
-                Path saida = options.getSaida() != null 
-                        ? Paths.get(options.getSaida())
-                        : formatoDaSaida.p12DirParaCriarEConverter(options.getDominio()).resolve(NOME_P12_PADRAO);
-
                 String alias = (options.getAlias() != null && !options.getAlias().isBlank())
                         ? options.getAlias()
-                        : options.getDominio();
+                        : ALIAS_PADRAO;
+                                                                                                                      
+                Path saida = options.getSaida() != null 
+                        ? Paths.get(options.getSaida())
+                        : formatoDaSaida.p12DirParaCriarEConverter(options.getDominio()).resolve(alias + FORMATO_P12);
 
                 new ConverterParaP12().execute(
                     issued.domainKeyPair().getPrivate(),
